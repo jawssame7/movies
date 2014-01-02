@@ -1,5 +1,5 @@
 <?php
-    $title_for_layout = '動画'
+    $title_for_layout = LABEL_MOVIE . LABEL_MANAGEMENT;
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,22 +44,22 @@
                 <nav class="three columns push_six">
                     <ul id="main-nav">
                         <li>
-                            <a href="<?php echo $this->Html->url('/movie/', true); ?>"><span>動画</span><i class="icon-doc-text" title="Documentation"></i></a>
+                            <a href="<?php echo $this->Html->url('/movie/', true); ?>"><span><?php echo LABEL_MOVIE; ?></span><i class="icon-doc-text" title="Documentation"></i></a>
                             <div class="dropdown">
                                 <ul>
-                                    <li><?php echo $this->Html->link('動画一覧', ['controller' => 'movie', 'action' => 'index']);?></li>
-                                    <li><?php echo $this->Html->link('動画追加', ['controller' => 'movie', 'action' => 'add']);?></li>
+                                    <li><?php echo $this->Html->link(LABEL_MOVIE . LABEL_LIST, ['controller' => 'movie', 'action' => 'index']);?></li>
+                                    <li><?php echo $this->Html->link(LABEL_MOVIE . LABEL_ADD, ['controller' => 'movie', 'action' => 'add']);?></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
                             <a href="<?php echo $this->Html->url('/', true); ?>">
-                                <span>管理</span><i class="icon-cog" title="Customize"></i>
+                                <span><?php echo LABEL_SETTING; ?></span><i class="icon-cog" title="Customize"></i>
                             </a>
                             <div class="dropdown">
                                 <ul>
-                                    <li><?php echo $this->Html->link('女優', ['controller' => 'cast', 'action' => 'index']);?></li>
-                                    <li><?php echo $this->Html->link('タグ', ['controller' => 'tag', 'action' => 'index']);?></li>
+                                    <li><?php echo $this->Html->link(LABEL_CAST, ['controller' => 'cast', 'action' => 'index']);?></li>
+                                    <li><?php echo $this->Html->link(LABEL_TAG, ['controller' => 'tag', 'action' => 'index']);?></li>
                                 </ul>
                             </div>
                             </div>

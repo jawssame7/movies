@@ -54,6 +54,10 @@ define('LABEL_SUCCESS', '成功');
 
 define('LABEL_CONFIRM', '確認');
 
+define('LABEL_SETTING', '設定');
+
+define('LABEL_MANAGEMENT', '管理');
+
 define('LABEL_COMMA_SEPARATE_ADD_MESSAGE', '（カンマ区切りで複数登録できます）');
 
 define('LABEL_COMMA_SEPARATE_SEARCH_MESSAGE', 'あいまい検索（カンマ区切りで複数検索可）');
@@ -83,8 +87,6 @@ define('CONFIRM_MESSAGE_DELETE_FAILURE', 'の登録に失敗しました。');
 define('VALID_REQUIRED', 'は必須です。');
 
 define('VALID_TITLE_REQUIRED', LABEL_TITLE.VALID_REQUIRED);
-
-define('VALID_FILE_REQUIRED', LABEL_FILE.VALID_REQUIRED);
 
 define('VALID_FILE_REQUIRED', 'ファイルが空です。');
 
