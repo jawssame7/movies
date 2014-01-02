@@ -1,0 +1,14 @@
+{
+  "name": "movies",
+  "version": "0.1.1",
+  "authors": [
+    "sameshima <jawssame7@gmail.com>"
+  ],
+  "description": "動画ファイル管理",
+  "license": "MIT",
+  "dependencies": {
+    "gumby": "~2.6.0",
+    "jquery.ui": "~1.10.3",
+    "jquery": "~1.10.2"
+  }
+}
