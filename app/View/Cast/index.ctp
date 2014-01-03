@@ -35,8 +35,8 @@ $count = 0;
             <table class="striped rounded">
                 <colgroup>
                     <col width="5%">
-                    <col width="70%">
-                    <col width="20%">
+                    <col width="50%">
+                    <col width="50%">
                 </colgroup>
                 <thead>
                 <tr>

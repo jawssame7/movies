@@ -37,7 +37,7 @@
                     <col width="50%">
                     <col width="15%">
                     <col width="10%">
-                    <col width="20%">
+                    <col width="30%">
                 </colgroup>
                 <thead>
                     <tr>
@@ -58,7 +58,7 @@
                                 <?php echo $movie['Movie']['tag'] ?>
                             </td>
                             <td>
-                                <div class="btn success medium metro rounded ">
+                                <div class="btn success medium metro rounded td-btn">
                                     <?php echo $this->Html->link(LABEL_EDIT, ['controller' => 'movie', 'action' => 'edit', $movie['Movie']['id']]); ?>
                                 </div>
                             </td>

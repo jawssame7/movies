@@ -41,6 +41,18 @@
     color: darken($danger-color, 20%);
 }
 
+@media screen and (max-width: $min-device-width) {
+
+    .td-btn {
+
+        @include font-size(12px, true);
+
+        a {
+            padding: 0 5px !important;
+        }
+    }
+}
+
 #modal-success, #modal-confirm {
     .flash-success {
         min-height: 20%;
