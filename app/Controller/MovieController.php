@@ -4,10 +4,22 @@ App::uses('AppController', 'Controller');
 
 class MovieController extends AppController {
 
+    /**
+     * コンポーネント
+     * @var array
+     */
     public $components = ['Paginator', 'MovieUtil'];
 
+    /**
+     * モデル
+     * @var array
+     */
     public $uses = ['Movie', 'Cast', 'Tag', 'MoviesCast', 'MoviesTag'];
 
+    /**
+     * ページネート設定
+     * @var array
+     */
     public $paginate = [
         'limit' => 20,
         'order' => [
@@ -16,6 +28,9 @@ class MovieController extends AppController {
     ];
 
 
+    /**
+     * 動画一覧
+     */
     public function index() {
 
         $this->Paginator->settings = $this->paginate;
@@ -26,10 +41,21 @@ class MovieController extends AppController {
 
         $movies = $this->Paginator->paginate('Movie');
 
+        // データ整形
+        foreach($movies as &$movie) {
+            $tags = $movie['Tag'];
+            $casts = $movie['Cast'];
+            $movie['Movie']['cast'] = $this->MovieUtil->createCastStr($casts);
+            $movie['Movie']['tag'] = $this->MovieUtil->createTagStr($tags);
+        }
+
         $this->set('movies', $movies);
     }
 
 
+    /**
+     * 動画追加
+     */
     public function add() {
 
         $addData = [];
@@ -156,6 +182,10 @@ class MovieController extends AppController {
 
     }
 
+    /**
+     * 動画編集
+     * @param $id
+     */
     public function edit($id) {
 
 
@@ -268,6 +298,10 @@ class MovieController extends AppController {
 
     }
 
+    /**
+     * 動画再生画面
+     * @param $id
+     */
     public function play($id) {
 
         $movie = $this->Movie->findById($id);
@@ -283,6 +317,11 @@ class MovieController extends AppController {
         $this->set('movie', $movie);
     }
 
+    /**
+     * 検索条件を作成して返します。
+     * @param $data
+     * @return array
+     */
     private function _createConditions($data) {
 
         $conditions = [];
@@ -327,6 +366,11 @@ class MovieController extends AppController {
         return $conditions;
     }
 
+    /**
+     * 出演者の検索条件を作成して返します。
+     * @param $param
+     * @return array
+     */
     private function _createCastConditions($param) {
 
         $result = [];
@@ -363,6 +407,11 @@ class MovieController extends AppController {
         return $result;
     }
 
+    /**
+     * タグの検索条件を作成して返します。
+     * @param $param
+     * @return array
+     */
     private function _createTagConditions($param) {
 
         $result = [];
@@ -399,6 +448,10 @@ class MovieController extends AppController {
         return $result;
     }
 
+    /**
+     * 出演者の一覧Jsonデータを作成して返します。
+     * @return array
+     */
     private function _getCastJsonData() {
 
         $castJsonData = [];
@@ -421,6 +474,10 @@ class MovieController extends AppController {
         return $castJsonData;
     }
 
+    /**
+     * タグの一覧Jsonデータを作成して返します。
+     * @return array
+     */
     private function _getTagJsonData() {
 
         $tagsJsonData = [];
@@ -445,6 +502,11 @@ class MovieController extends AppController {
     }
 
 
+    /**
+     * 出演者の保存処理
+     * @param $data
+     * @return array|bool
+     */
     private function _castSave($data) {
 
         $result = false;
@@ -495,6 +557,11 @@ class MovieController extends AppController {
     }
 
 
+    /**
+     * タグの保存処理
+     * @param $data
+     * @return array|bool
+     */
     private function _tagSave($data) {
 
         $result = false;
@@ -544,6 +611,12 @@ class MovieController extends AppController {
 
     }
 
+    /**
+     * 動画、出演者関連テーブルの保存処理
+     * @param $savedMovie
+     * @param $savedCast
+     * @return array|bool
+     */
     private function _moviesCastSave($savedMovie, $savedCast) {
 
         $result = false;
@@ -567,6 +640,12 @@ class MovieController extends AppController {
         return $result;
     }
 
+    /**
+     * 動画、タグ関連テーブルの保存処理
+     * @param $savedMovie
+     * @param $savedTag
+     * @return array|bool
+     */
     private function _moviesTagSave($savedMovie, $savedTag) {
 
         $result = false;
@@ -590,6 +669,11 @@ class MovieController extends AppController {
         return $result;
     }
 
+    /**
+     * カンマ区切りの文字列をトリムして配列で返します。
+     * @param array $data
+     * @return array
+     */
     private function _splitData($data = []) {
 
         $result = explode(',', $data);

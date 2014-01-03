@@ -2,10 +2,22 @@
 
 class CastController extends AppController {
 
+    /**
+     * コンポーネント
+     * @var array
+     */
     public $components = ['Paginator', 'MovieUtil'];
 
+    /**
+     * モデル
+     * @var array
+     */
     public $uses = ['Movie', 'Cast', 'Tag', 'MoviesCast', 'MoviesTag'];
 
+    /**
+     * ページネート設定
+     * @var array
+     */
     public $paginate = [
         'limit' => 20,
         'order' => [
@@ -13,7 +25,9 @@ class CastController extends AppController {
         ]
     ];
 
-
+    /**
+     * 出演者一覧
+     */
     public function index() {
 
         $this->Paginator->settings = $this->paginate;
@@ -28,6 +42,9 @@ class CastController extends AppController {
 
     }
 
+    /**
+     * 出演者追加
+     */
     public function add() {
 
         if ($this->request->isPost()) {
@@ -58,6 +75,10 @@ class CastController extends AppController {
         }
     }
 
+    /**
+     * 出演者編集
+     * @param $id
+     */
     public function edit($id) {
 
         if ($this->request->isGet()) {
@@ -96,6 +117,10 @@ class CastController extends AppController {
 
     }
 
+    /**
+     * 出演者削除
+     * @param $id
+     */
     public function delete($id) {
 
         if ($this->request->isGet()) {
@@ -132,6 +157,11 @@ class CastController extends AppController {
 
     }
 
+    /**
+     * 検索条件を作成して返します。
+     * @param $data
+     * @return array
+     */
     private function _createConditions($data) {
 
         $conditions = [];

@@ -3,6 +3,11 @@
 
 class MovieUtilComponent extends Component {
 
+    /**
+     * タグの一覧からカンマ区切りの文字列を作成して返します。
+     * @param array $tags
+     * @return string
+     */
     public function createTagStr($tags = []) {
 
         $tmpTags = [];
@@ -14,6 +19,11 @@ class MovieUtilComponent extends Component {
         return implode(',', $tmpTags);
     }
 
+    /**
+     * 出演者の一覧からカンマ区切りの文字列を作成して返します。
+     * @param array $casts
+     * @return string
+     */
     public function createCastStr($casts = []) {
 
         $tmpCast = [];

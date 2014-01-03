@@ -1,10 +1,22 @@
 <?php
 class TagController extends AppController {
 
+    /**
+     * コンポーネント
+     * @var array
+     */
     public $components = ['Paginator', 'MovieUtil'];
 
+    /**
+     * モデル
+     * @var array
+     */
     public $uses = ['Movie', 'Cast', 'Tag', 'MoviesTag', 'MoviesTag'];
 
+    /**
+     * ページネート設定
+     * @var array
+     */
     public $paginate = [
         'limit' => 20,
         'order' => [
@@ -12,10 +24,10 @@ class TagController extends AppController {
         ]
     ];
 
-    private $_conditons = [
-        'Tag.deleted' => '0'
-    ];
 
+    /**
+     * タグ一覧
+     */
     public function index() {
 
         $this->Paginator->settings = $this->paginate;
@@ -30,6 +42,9 @@ class TagController extends AppController {
 
     }
 
+    /**
+     * タグ追加
+     */
     public function add() {
 
         if ($this->request->isPost()) {
@@ -61,6 +76,10 @@ class TagController extends AppController {
         
     }
 
+    /**
+     * タグ編集
+     * @param $id
+     */
     public function edit($id) {
 
         if ($this->request->isGet()) {
@@ -99,6 +118,10 @@ class TagController extends AppController {
 
     }
 
+    /**
+     * タグ削除
+     * @param $id
+     */
     public function delete($id) {
 
         if ($this->request->isGet()) {
@@ -134,6 +157,11 @@ class TagController extends AppController {
         }
     }
 
+    /**
+     * 検索条件を作成して返します。
+     * @param $data
+     * @return array
+     */
     private function _createConditions($data) {
 
         $conditions = [];
