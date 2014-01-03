@@ -59,7 +59,7 @@
                             </div>
                         </li>
                         <li>
-                            <a href="<?php echo $this->Html->url('/', true); ?>">
+                            <a href="#">
                                 <span><?php echo LABEL_SETTING; ?></span><i class="icon-cog" title="Customize"></i>
                             </a>
                             <div class="dropdown">
@@ -76,16 +76,12 @@
         </nav>
         <div class="row">
             <div class="twelve columns">
-
-
                     <?php echo $this->Session->flash(); ?>
-
-
             </div>
         </div>
         <?php echo $this->fetch('content'); ?>
 
-        <?php  echo $this->element('sql_dump'); ?>
+        <?php //echo $this->element('sql_dump'); ?>
 
     </body>
 </html>

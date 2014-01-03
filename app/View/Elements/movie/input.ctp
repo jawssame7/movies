@@ -18,13 +18,13 @@
                 <?php echo $this->Form->error('file'); ?>
             </li>
             <?php endif; ?>
-            <li class="append field">
-                <?php echo $this->Html->tag('label', LABEL_CAST . '&emsp;&emsp;&emsp;&emsp;', ['class' => 'inline', 'for' => 'cast']); ?>
+            <li class=" field">
+                <?php echo $this->Html->tag('label', LABEL_CAST, ['class' => 'inline cast', 'for' => 'cast']); ?>
                 <?php echo $this->Form->input('cast', ['id' => 'cast', 'type' => 'text', 'class' => 'wide text input', 'placeholder' => LABEL_CAST . LABEL_COMMA_SEPARATE_ADD_MESSAGE, 'div' => false, 'label' => false]); ?>
                 <div class="medium default btn"><a id="cast-menu" href="#" tabindex="-1">▼</a></div>
             </li>
-            <li class="append field">
-                <?php echo $this->Html->tag('label', LABEL_TAG . '&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;', ['class' => 'inline', 'for' => 'tag']); ?>
+            <li class=" field">
+                <?php echo $this->Html->tag('label', LABEL_TAG, ['class' => 'inline tag', 'for' => 'tag']); ?>
                 <?php echo $this->Form->input('tag', ['id' => 'tag', 'type' => 'text', 'class' => 'wide text input', 'placeholder' => LABEL_TAG . LABEL_COMMA_SEPARATE_ADD_MESSAGE, 'div' => false, 'label' => false]); ?>
                 <div class="medium default btn"><a id="tag-menu" href="#" tabindex="-1">▼</a></div>
             </li>

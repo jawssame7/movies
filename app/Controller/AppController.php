@@ -32,5 +32,21 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
+    public $useragents = [
+        'iPhone',   // Apple iPhone
+        'iPod',     // Apple iPod touch
+        'Android'   // Android
+    ];
+
+    public function beforeRender() {
+
+        $pattern = '/'.implode('|', $this->useragents).'/i';
+
+        if($_ua = preg_match($pattern, $_SERVER['HTTP_USER_AGENT'])){
+            $this->set('userAgent', 'sp');
+        }else{
+            $this->set('userAgent', 'pc');
+        }
+    }
 
 }

@@ -27,6 +27,21 @@
 
 }
 
+form {
+
+    label{
+
+        &.cast {
+            padding-right: 36px;
+        }
+
+        &.tag {
+            padding-right: 52px;
+        }
+    }
+
+}
+
 .error-message {
     padding: 0 10px;
     font-family: $font-family;

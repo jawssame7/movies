@@ -15,11 +15,11 @@
                             <?php echo $this->Form->input('title', ['id' => 'title', 'class' => 'wide text input', 'placeholder' => 'あいまい検索', 'div' => false, 'label' => false]); ?>
                         </li>
                         <li class="field">
-                            <?php echo $this->Html->tag('label', LABEL_CAST. '&emsp;&emsp;&emsp;&emsp;&emsp;', ['class' => 'inline', 'for' => 'cast']); ?>
+                            <?php echo $this->Html->tag('label', LABEL_CAST, ['class' => 'inline cast', 'for' => 'cast', 'style' => '']); ?>
                             <?php echo $this->Form->input('cast', ['id' => 'cast', 'class' => 'wide text input', 'placeholder' => LABEL_COMMA_SEPARATE_SEARCH_MESSAGE, 'div' => false, 'label' => false]); ?>
                         </li>
                         <li class="field">
-                            <?php echo $this->Html->tag('label', LABEL_TAG . '&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;', ['class' => 'inline', 'for' => 'tag']); ?>
+                            <?php echo $this->Html->tag('label', LABEL_TAG, ['class' => 'inline tag', 'for' => 'tag', 'style' => '']); ?>
                             <?php echo $this->Form->input('tag', ['id' => 'tag', 'class' => 'wide text input', 'placeholder' => LABEL_COMMA_SEPARATE_SEARCH_MESSAGE, 'div' => false, 'label' => false]); ?>
                         </li>
                     </ul>
