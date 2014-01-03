@@ -46,7 +46,6 @@ CREATE TABLE `movies` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(500) DEFAULT NULL,
   `file_name` varchar(500) DEFAULT NULL,
-  `file_type` varchar(100) DEFAULT NULL,
   `deleted` int(1) DEFAULT '0',
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
