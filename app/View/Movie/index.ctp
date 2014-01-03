@@ -34,10 +34,10 @@
         <div class="twelve columns">
             <table class="striped rounded">
                 <colgroup>
-                    <col width="70%">
+                    <col width="50%">
+                    <col width="15%">
                     <col width="10%">
-                    <col width="10%">
-                    <col width="10%">
+                    <col width="20%">
                 </colgroup>
                 <thead>
                     <tr>
@@ -52,29 +52,10 @@
                         <tr>
                             <td><?php echo $this->Html->link($movie['Movie']['title'], ['controller' => 'movie', 'action' => 'play', $movie['Movie']['id']]); ?></td>
                             <td>
-                                <?php
-                                    $idx = 0;
-                                    $count = count($movie['Cast']);
-                                ?>
-                                <?php foreach($movie['Cast'] as $tag) : ?>
-                                    <?php echo $tag['name'] ?>
-                                    <?php if ($count != $idx): ?>
-                                        <br/>
-                                    <?php endif; ?>
-                                    <?php $count++; ?>
-                                <?php endforeach; ?>
+                                <?php echo $movie['Movie']['cast'] ?>
                             </td>
                             <td>
-                                <?php
-                                    $idx = 0;
-                                    $count = count($movie['Tag']);
-                                ?>
-                                <?php foreach($movie['Tag'] as $tag) : ?>
-                                    <?php echo $tag['name'] ?>
-                                    <?php if ($count != $idx): ?>
-                                        <br/>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
+                                <?php echo $movie['Movie']['tag'] ?>
                             </td>
                             <td>
                                 <div class="btn success medium metro rounded ">
