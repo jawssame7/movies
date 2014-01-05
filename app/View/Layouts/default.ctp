@@ -37,50 +37,59 @@
     ?>
 </head>
     <body id="<?php echo $this->fetch('id'); ?>" class="grid">
-        <nav id="navbar-main-nav" class="navbar">
-            <div class="row">
-                <a class="toggle" gumby-trigger="#navbar-main-nav #main-nav" href="#">
-                    <i class="icon-menu"></i>
-                </a>
-                <h1 id="top-logo" class="three columns logo">
-                    <a href="<?php echo $this->Html->url('/', true); ?>" >
-                        <?php echo $this->Html->image('logo.png', array('alt' => 'logo')); ?>
+        <div id="wrapper">
+            <nav id="navbar-main-nav" class="navbar">
+                <div class="row">
+                    <a class="toggle" gumby-trigger="#navbar-main-nav #main-nav" href="#">
+                        <i class="icon-menu"></i>
                     </a>
-                </h1>
-                <nav class="three columns push_six">
-                    <ul id="main-nav">
-                        <li>
-                            <a href="<?php echo $this->Html->url('/movie/', true); ?>"><span><?php echo LABEL_MOVIE; ?></span><i class="icon-doc-text" title="Documentation"></i></a>
-                            <div class="dropdown">
-                                <ul>
-                                    <li><?php echo $this->Html->link(LABEL_MOVIE . LABEL_LIST, ['controller' => 'movie', 'action' => 'index']);?></li>
-                                    <li><?php echo $this->Html->link(LABEL_MOVIE . LABEL_ADD, ['controller' => 'movie', 'action' => 'add']);?></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span><?php echo LABEL_SETTING; ?></span><i class="icon-cog" title="Customize"></i>
-                            </a>
-                            <div class="dropdown">
-                                <ul>
-                                    <li><?php echo $this->Html->link(LABEL_CAST, ['controller' => 'cast', 'action' => 'index']);?></li>
-                                    <li><?php echo $this->Html->link(LABEL_TAG, ['controller' => 'tag', 'action' => 'index']);?></li>
-                                </ul>
-                            </div>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
+                    <h1 id="top-logo" class="three columns logo">
+                        <a href="<?php echo $this->Html->url('/', true); ?>" >
+                            <?php echo $this->Html->image('logo.png', array('alt' => 'logo')); ?>
+                        </a>
+                    </h1>
+                    <nav class="three columns push_six">
+                        <ul id="main-nav">
+                            <li>
+                                <a href="<?php echo $this->Html->url('/movie/', true); ?>"><span><?php echo LABEL_MOVIE; ?></span><i class="icon-doc-text" title="Documentation"></i></a>
+                                <div class="dropdown">
+                                    <ul>
+                                        <li><?php echo $this->Html->link(LABEL_MOVIE . LABEL_LIST, ['controller' => 'movie', 'action' => 'index']);?></li>
+                                        <li><?php echo $this->Html->link(LABEL_MOVIE . LABEL_ADD, ['controller' => 'movie', 'action' => 'add']);?></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span><?php echo LABEL_SETTING; ?></span><i class="icon-cog" title="Customize"></i>
+                                </a>
+                                <div class="dropdown">
+                                    <ul>
+                                        <li><?php echo $this->Html->link(LABEL_CAST, ['controller' => 'cast', 'action' => 'index']);?></li>
+                                        <li><?php echo $this->Html->link(LABEL_TAG, ['controller' => 'tag', 'action' => 'index']);?></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </nav>
+            <div id="contents" >
+                <div class="row">
+                    <div class="twelve columns">
+                        <?php echo $this->Session->flash(); ?>
+                    </div>
+                </div>
+                <?php echo $this->fetch('content'); ?>
             </div>
-        </nav>
-        <div class="row">
-            <div class="twelve columns">
-                    <?php echo $this->Session->flash(); ?>
+            <div id="footer">
+                <div class="row">
+                    <div class="twelve columns centered">
+
+                    </div>
+                </div>
             </div>
         </div>
-        <?php echo $this->fetch('content'); ?>
-
         <?php //echo $this->element('sql_dump'); ?>
 
     </body>
