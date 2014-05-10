@@ -24,8 +24,17 @@ class MovieController extends AppController {
         'limit' => 20,
         'order' => [
             'Movie.id' => 'asc'
-        ]
+        ],
+        'paramType' => 'querystring'
     ];
+
+    /**
+     *
+     */
+    public function beforeFilter() {
+        // ページネート設定
+        $this->Paginator->settings = $this->paginate;
+    }
 
 
     /**
@@ -33,9 +42,9 @@ class MovieController extends AppController {
      */
     public function index() {
 
-        $this->Paginator->settings = $this->paginate;
+        $params = $this->_mergedCondition();
 
-        $conditions = $this->_createConditions($this->request->data);
+        $conditions = $this->_createConditions($params);
 
         $this->Paginator->settings['conditions'] = $conditions;
 
@@ -318,6 +327,21 @@ class MovieController extends AppController {
     }
 
     /**
+     * 検索条件をマージ
+     * @return array
+     */
+    private function _mergedCondition() {
+
+        $params = array_merge($this->passedArgs, $this->request->data);
+        if (isset($this->request->data['Movie'])) {
+            $this->request->query['page'] = 1;
+        }
+
+        $this->request->data = $params;
+        return $params;
+    }
+
+    /**
      * 検索条件を作成して返します。
      * @param $data
      * @return array
@@ -354,7 +378,7 @@ class MovieController extends AppController {
                 $tagMovieIds = $this->_createTagConditions($movie['tag']);
             }
 
-            $movieIds = array_merge($actMovieIds, $tagMovieIds);
+            $movieIds = $this->_mergedSearchMovieIds($actMovieIds, $tagMovieIds);
 
             if (count($movieIds) > 0) {
                 $conditions[] = [
@@ -667,6 +691,24 @@ class MovieController extends AppController {
         }
 
         return $result;
+    }
+
+    private function _mergedSearchMovieIds($casts = [], $tags = []) {
+
+        $large = count($casts) > count($tags) ? $casts : $tags;
+        $small = count($casts) <= count($tags) ? $casts : $tags;
+        $merged = [];
+
+
+        foreach($large as $l) {
+            foreach($small as $s) {
+                if($s == $l) {
+                    $merged[] = $s;
+                }
+            }
+        }
+        return $merged;
+
     }
 
     /**
