@@ -2,7 +2,7 @@
     $title_for_layout = LABEL_MOVIE . LABEL_MANAGEMENT;
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
     <?php echo $this->Html->charset(); ?>
     <title>
@@ -14,6 +14,8 @@
         //echo $this->Html->meta('', '' , ['name' => 'viewport', 'content' => 'width=device-width,initial-scale=1, maximum-scale=1']);
         echo $this->Html->tag('meta', null, ['name' => 'viewport', 'content' => 'width=device-width,initial-scale=1, maximum-scale=1']);
         echo $this->fetch('meta');
+        echo $this->Html->css('style');
+        echo $this->Html->css('/bower_components/videojs/src/css/video-js');
         echo $this->Html->script('/bower_components/gumby/js/libs/modernizr-2.6.2.min');
         echo $this->Html->script('/bower_components/gumby/js/libs/jquery-1.10.1.min');
         echo $this->Html->script('/bower_components/jquery.ui/ui/jquery.ui.core');
@@ -21,20 +23,23 @@
         echo $this->Html->script('/bower_components/jquery.ui/ui/jquery.ui.position');
         echo $this->Html->script('/bower_components/jquery.ui/ui/jquery.ui.menu');
         echo $this->Html->script('/bower_components/jquery.ui/ui/jquery.ui.autocomplete');
-        //echo $this->Html->script('/bower_components/gumby/js/libs/gumby.min');
-        echo $this->Html->script('/bower_components/gumby/js/libs/gumby', ['gumby-touch' => 'js/libs', 'gumby-debug' => '']);
-        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.retina');
-        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.fixed');
-        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.skiplink');
-        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.toggleswitch');
-        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.checkbox');
-        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.radiobtn');
-        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.tabs');
-        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.navbar');
-        echo $this->Html->script('/bower_components/gumby/js/libs/ui/jquery.validation');
-        echo $this->Html->script('/bower_components/gumby/js/libs/gumby.init');
-        echo $this->Html->css('style');
+        echo $this->Html->script('/bower_components/gumby/js/libs/gumby.min');
+//        echo $this->Html->script('/bower_components/gumby/js/libs/gumby', ['gumby-touch' => 'js/libs', 'gumby-debug' => '']);
+//        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.retina');
+//        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.fixed');
+//        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.skiplink');
+//        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.toggleswitch');
+//        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.checkbox');
+//        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.radiobtn');
+//        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.tabs');
+//        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.navbar');
+//        echo $this->Html->script('/bower_components/gumby/js/libs/ui/jquery.validation');
+//        echo $this->Html->script('/bower_components/gumby/js/libs/gumby.init');
+        echo $this->Html->script('/bower_components/videojs/build/files/combined.video');
     ?>
+    <script>
+        videojs.options.flash.swf = "bower_components/videojs/build/files/video-js.swf";
+    </script>
 </head>
     <body id="<?php echo $this->fetch('id'); ?>" class="grid">
         <div id="wrapper">
@@ -90,7 +95,7 @@
                 </div>
             </div>
         </div>
-        <?php //echo $this->element('sql_dump'); ?>
+        <?php  echo $this->element('sql_dump'); ?>
 
     </body>
 </html>

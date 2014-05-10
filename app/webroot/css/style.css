@@ -7530,7 +7530,7 @@ form label.tag {
   width: 30%;
 }
 
-/* line 103, ../sass/style.scss */
-video {
-  width: 100%;
+/* line 107, ../sass/style.scss */
+#play-info {
+  margin: 16px;
 }

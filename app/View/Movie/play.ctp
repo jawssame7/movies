@@ -1,13 +1,18 @@
 <div class="row">
     <div class="twelve columns">
-        <video preload="auto" controls="" autoplay=""  name="media">
-            <source src="<?php echo $this->Html->url('../app/webroot/movies/', true).$movie['Movie']['file_name'] ?>" type="video/mp4">
-        </video>
+        <div class="eight columns centered">
+            <video id="player" class="video-js vjs-default-skin"
+                   controls preload="auto" width="640" height="264"
+                   poster=""
+                   data-setup='{"example_option":true}'>
+                <source src="<?php echo $this->Html->url('../app/webroot/movies/', true).$movie['Movie']['file_name'] ?>" type="video/mp4"/>
+            </video>
+        </div>
     </div>
 </div>
 <div class="row">
     <div class="twelve columns">
-        <table>
+        <table id="play-info">
             <tbody>
                 <tr>
                     <td colspan="2"><?php echo $movie['Movie']['title'] ?></td>
