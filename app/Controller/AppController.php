@@ -49,4 +49,26 @@ class AppController extends Controller {
         }
     }
 
+    /**
+     * json形式にパースして、json用のviewをレンダリング
+     * @param $result
+     */
+    protected function renderJsonView($result) {
+
+        $item = json_encode($result);
+
+        $this->set('item', $item);
+
+        $this->set('_serialize', array('item'));
+
+        if (Configure::read('debug') < 2) {
+            $this->RequestHandler->respondAs('application/json; charset=UTF-8');
+        } else {
+            $this->layout = 'ajax';
+        }
+
+        $this->render('/Json/default');
+
+    }
+
 }

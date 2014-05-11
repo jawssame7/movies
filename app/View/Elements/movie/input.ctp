@@ -10,12 +10,19 @@
                 <?php echo $this->Form->input('id', ['id' => 'id', 'type' => 'hidden', 'div' => false, 'label' => false]); ?>
                 <?php echo $this->Html->tag('label', LABEL_TITLE, ['class' => 'inline', 'for' => 'title']); ?>
                 <?php echo $this->Form->input('title', ['id' => 'title', 'class' => 'wide text input', 'placeholder' => LABEL_TITLE, 'div' => false, 'label' => false]); ?>
+                <div class="error-message hide title"></div>
             </li>
             <?php if (!isset($type)): ?>
             <li class="field">
                 <?php echo $this->Html->tag('label', LABEL_FILE, ['class' => 'inline', 'for' => 'file']); ?>
-                <?php echo $this->Form->file('file', ['id' => 'file', 'class' => 'wide text input', 'placeholder' => LABEL_FILE, 'div' => false, 'label' => false]); ?>
-                <?php echo $this->Form->error('file'); ?>
+<!--                --><?php //echo $this->Form->file('file', ['id' => 'fileupload', 'class' => 'wide text input', 'placeholder' => LABEL_FILE, 'div' => false, 'label' => false]); ?>
+                <span class="medium success btn metro rounded fileinput-button">
+                    <i class="icon-plus"></i>
+                    <span>ファイルを追加...</span>
+                    <input type="file" id="fileupload" name="file" >
+                </span>
+                <span class="default label filename">選択されていません</span>
+                <div class="error-message hide file"></div>
             </li>
             <?php endif; ?>
             <li class=" field">
@@ -30,7 +37,14 @@
             </li>
         </ul>
     </fieldset>
-    <div class="medium primary btn metro rounded ">
-        <a id="<?php echo $btnId; ?>" href="javascript:void(0);"><?php echo $btnName; ?></a>
+    <div class="row">
+        <div id="progress" class="progress">
+            <div id="progress-bar" class="progress-bar progress-bar-success"></div>
+        </div>
+    </div>
+    <div class="row spacer">
+        <div class="medium primary btn metro rounded ">
+            <a id="<?php echo $btnId; ?>" href="javascript:void(0);"><?php echo $btnName; ?></a>
+        </div>
     </div>
 </div>

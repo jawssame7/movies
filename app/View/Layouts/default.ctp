@@ -22,7 +22,11 @@
         echo $this->Html->script('/bower_components/jquery.ui/ui/jquery.ui.widget');
         echo $this->Html->script('/bower_components/jquery.ui/ui/jquery.ui.position');
         echo $this->Html->script('/bower_components/jquery.ui/ui/jquery.ui.menu');
+        echo $this->Html->script('/bower_components/jquery.ui/ui/jquery.ui.progressbar');
         echo $this->Html->script('/bower_components/jquery.ui/ui/jquery.ui.autocomplete');
+
+        echo $this->Html->script('/bower_components/underscore/underscore');
+
         echo $this->Html->script('/bower_components/gumby/js/libs/gumby.min');
 //        echo $this->Html->script('/bower_components/gumby/js/libs/gumby', ['gumby-touch' => 'js/libs', 'gumby-debug' => '']);
 //        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.retina');
@@ -35,6 +39,14 @@
 //        echo $this->Html->script('/bower_components/gumby/js/libs/ui/gumby.navbar');
 //        echo $this->Html->script('/bower_components/gumby/js/libs/ui/jquery.validation');
 //        echo $this->Html->script('/bower_components/gumby/js/libs/gumby.init');
+
+        echo $this->Html->script('/bower_components/jquery-file-upload/js/jquery.iframe-transport');
+        echo $this->Html->script('/bower_components/jquery-file-upload/js/jquery.fileupload');
+        echo $this->Html->script('/bower_components/jquery-file-upload/js/jquery.fileupload-process');
+//        echo $this->Html->script('/bower_components/jquery-file-upload/js/jquery.fileupload-video');
+//        echo $this->Html->script('/bower_components/jquery-file-upload/js/jquery.fileupload-validate');
+        echo $this->Html->script('/bower_components/jquery-file-upload/js/jquery.fileupload-ui');
+
         echo $this->Html->script('/bower_components/videojs/build/files/combined.video');
     ?>
     <script>

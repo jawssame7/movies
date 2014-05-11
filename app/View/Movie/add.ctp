@@ -1,4 +1,9 @@
 <div class="row">
+    <div class="row hide global-error-message">
+        <div class="twelve columns">
+            <div id="flashMessage" class="danger alert">エラーがあります。</div>
+        </div>
+    </div>
     <h3 class="lead"><?php echo LABEL_MOVIE . LABEL_ADD ?></h3>
     <div class="row">
         <?php echo $this->Form->create(null, ['type' => 'file']); ?>

@@ -68,6 +68,7 @@ class MovieController extends AppController {
     public function add() {
 
         $addData = [];
+        $file = null;
         $fileInValid = false;
         $errorMsg = null;
         $savedMovie = null;
@@ -83,16 +84,18 @@ class MovieController extends AppController {
 
             $data = $this->request->data;
 
+            $fileInput = $_FILES['file'];
+
             if (!empty($data)) {
 
                 $addData['Movie']['title'] = $data['Movie']['title'];
-                $addData['Movie']['file_name'] = $data['Movie']['file']['name'];
+                $addData['Movie']['file_name'] = $fileInput['name'];
 
                 $this->Movie->set($addData);
 
                 if ($this->Movie->validates()) {
 
-                    $fileInput = $data['Movie']['file'];
+                    //$fileInput = $data['Movie']['file'];
 
                     if (!is_uploaded_file($fileInput['tmp_name'])){
 
@@ -113,7 +116,16 @@ class MovieController extends AppController {
                             $fileInValid = true;
                             $errorMsg = VALID_FILE_EXTENSION;
                             $this->Movie->invalidate('file', $errorMsg);
+                            $errors = $this->Movie->validationErrors;
 
+                            $result = [
+                                    'success' => false,
+                                    'errors' => $errors
+                            ];
+
+                            $this->renderJsonView($result);
+
+                            return;
                         }
                     }
 
@@ -131,7 +143,18 @@ class MovieController extends AppController {
 
                         if (!$savedMovie) {
                             $dataSource->rollback();
-                            $this->Session->setFlash(LABEL_MOVIE . LABEL_TABLE . CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
+                            //$this->Session->setFlash(LABEL_MOVIE . LABEL_TABLE . CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
+                            $errorMsg = LABEL_MOVIE . LABEL_TABLE . CONFIRM_MESSAGE_ADD_FAILURE;
+                            $this->Movie->invalidate('other', $errorMsg);
+                            $errors = $this->Movie->validationErrors;
+
+                            $result = [
+                                'success' => false,
+                                'errors' => $errors
+                            ];
+
+                            $this->renderJsonView($result);
+
                             return;
 
                         }
@@ -140,7 +163,17 @@ class MovieController extends AppController {
                         $savedCast = $this->_castSave($data['Movie']['cast']);
                         if (!$savedCast) {
                             $dataSource->rollback();
-                            $this->Session->setFlash(LABEL_CAST . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
+                            //$this->Session->setFlash(LABEL_CAST . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
+                            $errorMsg = LABEL_CAST . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE;
+                            $this->Movie->invalidate('other', $errorMsg);
+                            $errors = $this->Movie->validationErrors;
+
+                            $result = [
+                                'success' => false,
+                                'errors' => $errors
+                            ];
+
+                            $this->renderJsonView($result);
                             return;
                         }
 
@@ -148,7 +181,17 @@ class MovieController extends AppController {
                         $savedTag = $this->_tagSave($data['Movie']['tag']);
                         if (!$savedTag) {
                             $dataSource->rollback();
-                            $this->Session->setFlash(LABEL_TAG . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
+                            //$this->Session->setFlash(LABEL_TAG . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
+                            $errorMsg = LABEL_TAG . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE;
+                            $this->Movie->invalidate('other', $errorMsg);
+                            $errors = $this->Movie->validationErrors;
+
+                            $result = [
+                                'success' => false,
+                                'errors' => $errors
+                            ];
+
+                            $this->renderJsonView($result);
                             return;
                         }
 
@@ -156,7 +199,17 @@ class MovieController extends AppController {
                         $savedMoviesCast = $this->_moviesCastSave($savedMovie, $savedCast);
                         if (!$savedMoviesCast) {
                             $dataSource->rollback();
-                            $this->Session->setFlash(LABEL_MOVIE . LABEL_CAST . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
+                            //$this->Session->setFlash(LABEL_MOVIE . LABEL_CAST . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
+                            $errorMsg = LABEL_MOVIE . LABEL_CAST . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE;
+                            $this->Movie->invalidate('other', $errorMsg);
+                            $errors = $this->Movie->validationErrors;
+
+                            $result = [
+                                'success' => false,
+                                'errors' => $errors
+                            ];
+
+                            $this->renderJsonView($result);
                             return;
                         }
 
@@ -164,26 +217,71 @@ class MovieController extends AppController {
                         $savedMoviesTag = $this->_moviesTagSave($savedMovie, $savedTag);
                         if (!$savedMoviesTag) {
                             $dataSource->rollback();
-                            $this->Session->setFlash(LABEL_MOVIE . LABEL_TAG . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
+                            //$this->Session->setFlash(LABEL_MOVIE . LABEL_TAG . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
+                            $errorMsg = LABEL_MOVIE . LABEL_TAG . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE;
+                            $this->Movie->invalidate('other', $errorMsg);
+                            $errors = $this->Movie->validationErrors;
+
+                            $result = [
+                                'success' => false,
+                                'errors' => $errors
+                            ];
+
+                            $this->renderJsonView($result);
                             return;
                         }
 
                         $dataSource->commit();
+//                        $this->Session->setFlash(CONFIRM_MESSAGE_ADD_SUCCESS, 'flash_success', ['page_title' => LABEL_SUCCESS]);
+//                        $this->redirect('index');
                         $this->Session->setFlash(CONFIRM_MESSAGE_ADD_SUCCESS, 'flash_success', ['page_title' => LABEL_SUCCESS]);
-                        $this->redirect('index');
+                        $result = [
+                            'success' => true
+                        ];
+
+                        $this->renderJsonView($result);
+                        return ;
 
 
                     } else {
-                        $this->Session->setFlash(CONFIRM_MESSAGE_FILE_MOVE_ERROR, 'default',  ['class' => 'danger alert']);
+                        //$this->Session->setFlash(CONFIRM_MESSAGE_FILE_ERROR, 'default',  ['class' => 'danger alert']);
+                        $errorMsg = CONFIRM_MESSAGE_FILE_ERROR;
+                        $this->Movie->invalidate('file', $errorMsg);
+                        $errors = $this->Movie->validationErrors;
+
+                        $result = [
+                            'success' => false,
+                            'errors' => $errors
+                        ];
+
+                        $this->renderJsonView($result);
+
+                        return;
                     }
 
                 } else {
-                    $this->Session->setFlash(CONFIRM_ERROR_MESSAGE, 'default',  ['class' => 'danger alert']);
+                    // 入力チェック
+                    //$this->Session->setFlash(CONFIRM_ERROR_MESSAGE, 'default',  ['class' => 'danger alert']);
+                    $errors = $this->Movie->validationErrors;
+                    $result = [
+                        'success' => false,
+                        'errors' => $errors
+                    ];
+                    $this->renderJsonView($result);
                 }
 
             } else {
 
-                $this->Session->setFlash(CONFIRM_MESSAGE_NOT_SEND_DATA, 'default',  ['class' => 'danger alert']);
+                //$this->Session->setFlash(CONFIRM_MESSAGE_NOT_SEND_DATA, 'default',  ['class' => 'danger alert']);
+
+                $result = [
+                    'success' => false,
+                    'errors' => ""
+                ];
+
+                $this->renderJsonView($result);
+
+                return;
 
             }
 

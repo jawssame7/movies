@@ -66,6 +66,8 @@ define('LABEL_CONFIRM_MESSAGE', 'してよろしいですか？');
 
 define('CONFIRM_ERROR_MESSAGE', 'エラーがあります。');
 
+define('CONFIRM_MESSAGE_FILE_ERROR', 'アップロードファイルにエラーがあります。');
+
 define('CONFIRM_MESSAGE_FILE_MOVE_ERROR', 'ファイルの移動に失敗しました。');
 
 define('CONFIRM_MESSAGE_NOT_SEND_DATA', '送信データがありませんでした。');

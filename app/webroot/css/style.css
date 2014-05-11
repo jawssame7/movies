@@ -167,7 +167,7 @@ i.icon-note-beamed:before {
 .icon-music.icon-left a:before,
 .icon-music.icon-right a:after,
 i.icon-music:before {
-  content: "🎵";
+  content: "\1f3b5";
   height: inherit;
 }
 
@@ -175,7 +175,7 @@ i.icon-music:before {
 .icon-search.icon-left a:before,
 .icon-search.icon-right a:after,
 i.icon-search:before {
-  content: "🔍";
+  content: "\1f50d";
   height: inherit;
 }
 
@@ -183,7 +183,7 @@ i.icon-search:before {
 .icon-flashlight.icon-left a:before,
 .icon-flashlight.icon-right a:after,
 i.icon-flashlight:before {
-  content: "🔦";
+  content: "\1f526";
   height: inherit;
 }
 
@@ -231,7 +231,7 @@ i.icon-star-empty:before {
 .icon-user.icon-left a:before,
 .icon-user.icon-right a:after,
 i.icon-user:before {
-  content: "👤";
+  content: "\1f464";
   height: inherit;
 }
 
@@ -239,7 +239,7 @@ i.icon-user:before {
 .icon-users.icon-left a:before,
 .icon-users.icon-right a:after,
 i.icon-users:before {
-  content: "👥";
+  content: "\1f465";
   height: inherit;
 }
 
@@ -255,7 +255,7 @@ i.icon-user-add:before {
 .icon-video.icon-left a:before,
 .icon-video.icon-right a:after,
 i.icon-video:before {
-  content: "🎬";
+  content: "\1f3ac";
   height: inherit;
 }
 
@@ -263,7 +263,7 @@ i.icon-video:before {
 .icon-picture.icon-left a:before,
 .icon-picture.icon-right a:after,
 i.icon-picture:before {
-  content: "🌄";
+  content: "\1f304";
   height: inherit;
 }
 
@@ -271,7 +271,7 @@ i.icon-picture:before {
 .icon-camera.icon-left a:before,
 .icon-camera.icon-right a:after,
 i.icon-camera:before {
-  content: "📷";
+  content: "\1f4f7";
   height: inherit;
 }
 
@@ -407,7 +407,7 @@ i.icon-info-circled:before {
 .icon-back.icon-left a:before,
 .icon-back.icon-right a:after,
 i.icon-back:before {
-  content: "🔙";
+  content: "\1f519";
   height: inherit;
 }
 
@@ -423,7 +423,7 @@ i.icon-home:before {
 .icon-link.icon-left a:before,
 .icon-link.icon-right a:after,
 i.icon-link:before {
-  content: "🔗";
+  content: "\1f517";
   height: inherit;
 }
 
@@ -431,7 +431,7 @@ i.icon-link:before {
 .icon-attach.icon-left a:before,
 .icon-attach.icon-right a:after,
 i.icon-attach:before {
-  content: "📎";
+  content: "\1f4ce";
   height: inherit;
 }
 
@@ -439,7 +439,7 @@ i.icon-attach:before {
 .icon-lock.icon-left a:before,
 .icon-lock.icon-right a:after,
 i.icon-lock:before {
-  content: "🔒";
+  content: "\1f512";
   height: inherit;
 }
 
@@ -447,7 +447,7 @@ i.icon-lock:before {
 .icon-lock-open.icon-left a:before,
 .icon-lock-open.icon-right a:after,
 i.icon-lock-open:before {
-  content: "🔓";
+  content: "\1f513";
   height: inherit;
 }
 
@@ -471,7 +471,7 @@ i.icon-tag:before {
 .icon-bookmark.icon-left a:before,
 .icon-bookmark.icon-right a:after,
 i.icon-bookmark:before {
-  content: "🔖";
+  content: "\1f516";
   height: inherit;
 }
 
@@ -479,7 +479,7 @@ i.icon-bookmark:before {
 .icon-bookmarks.icon-left a:before,
 .icon-bookmarks.icon-right a:after,
 i.icon-bookmarks:before {
-  content: "📑";
+  content: "\1f4d1";
   height: inherit;
 }
 
@@ -495,7 +495,7 @@ i.icon-flag:before {
 .icon-thumbs-up.icon-left a:before,
 .icon-thumbs-up.icon-right a:after,
 i.icon-thumbs-up:before {
-  content: "👍";
+  content: "\1f44d";
   height: inherit;
 }
 
@@ -503,7 +503,7 @@ i.icon-thumbs-up:before {
 .icon-thumbs-down.icon-left a:before,
 .icon-thumbs-down.icon-right a:after,
 i.icon-thumbs-down:before {
-  content: "👎";
+  content: "\1f44e";
   height: inherit;
 }
 
@@ -511,7 +511,7 @@ i.icon-thumbs-down:before {
 .icon-download.icon-left a:before,
 .icon-download.icon-right a:after,
 i.icon-download:before {
-  content: "📥";
+  content: "\1f4e5";
   height: inherit;
 }
 
@@ -519,7 +519,7 @@ i.icon-download:before {
 .icon-upload.icon-left a:before,
 .icon-upload.icon-right a:after,
 i.icon-upload:before {
-  content: "📤";
+  content: "\1f4e4";
   height: inherit;
 }
 
@@ -639,7 +639,7 @@ i.icon-chat:before {
 .icon-bell.icon-left a:before,
 .icon-bell.icon-right a:after,
 i.icon-bell:before {
-  content: "🔔";
+  content: "\1f514";
   height: inherit;
 }
 
@@ -655,7 +655,7 @@ i.icon-attention:before {
 .icon-alert.icon-left a:before,
 .icon-alert.icon-right a:after,
 i.icon-alert:before {
-  content: "💥";
+  content: "\1f4a5";
   height: inherit;
 }
 
@@ -751,7 +751,7 @@ i.icon-doc-landscape:before {
 .icon-doc-text.icon-left a:before,
 .icon-doc-text.icon-right a:after,
 i.icon-doc-text:before {
-  content: "📄";
+  content: "\1f4c4";
   height: inherit;
 }
 
@@ -767,7 +767,7 @@ i.icon-doc-text-inv:before {
 .icon-newspaper.icon-left a:before,
 .icon-newspaper.icon-right a:after,
 i.icon-newspaper:before {
-  content: "📰";
+  content: "\1f4f0";
   height: inherit;
 }
 
@@ -775,7 +775,7 @@ i.icon-newspaper:before {
 .icon-book-open.icon-left a:before,
 .icon-book-open.icon-right a:after,
 i.icon-book-open:before {
-  content: "📖";
+  content: "\1f4d6";
   height: inherit;
 }
 
@@ -783,7 +783,7 @@ i.icon-book-open:before {
 .icon-book.icon-left a:before,
 .icon-book.icon-right a:after,
 i.icon-book:before {
-  content: "📕";
+  content: "\1f4d5";
   height: inherit;
 }
 
@@ -791,7 +791,7 @@ i.icon-book:before {
 .icon-folder.icon-left a:before,
 .icon-folder.icon-right a:after,
 i.icon-folder:before {
-  content: "📁";
+  content: "\1f4c1";
   height: inherit;
 }
 
@@ -807,7 +807,7 @@ i.icon-archive:before {
 .icon-box.icon-left a:before,
 .icon-box.icon-right a:after,
 i.icon-box:before {
-  content: "📦";
+  content: "\1f4e6";
   height: inherit;
 }
 
@@ -823,7 +823,7 @@ i.icon-rss:before {
 .icon-phone.icon-left a:before,
 .icon-phone.icon-right a:after,
 i.icon-phone:before {
-  content: "📞";
+  content: "\1f4de";
   height: inherit;
 }
 
@@ -871,7 +871,7 @@ i.icon-basket:before {
 .icon-bag.icon-left a:before,
 .icon-bag.icon-right a:after,
 i.icon-bag:before {
-  content: "👜";
+  content: "\1f45c";
   height: inherit;
 }
 
@@ -879,7 +879,7 @@ i.icon-bag:before {
 .icon-calendar.icon-left a:before,
 .icon-calendar.icon-right a:after,
 i.icon-calendar:before {
-  content: "📅";
+  content: "\1f4c5";
   height: inherit;
 }
 
@@ -903,7 +903,7 @@ i.icon-logout:before {
 .icon-mic.icon-left a:before,
 .icon-mic.icon-right a:after,
 i.icon-mic:before {
-  content: "🎤";
+  content: "\1f3a4";
   height: inherit;
 }
 
@@ -911,7 +911,7 @@ i.icon-mic:before {
 .icon-mute.icon-left a:before,
 .icon-mute.icon-right a:after,
 i.icon-mute:before {
-  content: "🔇";
+  content: "\1f507";
   height: inherit;
 }
 
@@ -919,7 +919,7 @@ i.icon-mute:before {
 .icon-sound.icon-left a:before,
 .icon-sound.icon-right a:after,
 i.icon-sound:before {
-  content: "🔊";
+  content: "\1f50a";
   height: inherit;
 }
 
@@ -935,7 +935,7 @@ i.icon-volume:before {
 .icon-clock.icon-left a:before,
 .icon-clock.icon-right a:after,
 i.icon-clock:before {
-  content: "🕔";
+  content: "\1f554";
   height: inherit;
 }
 
@@ -951,7 +951,7 @@ i.icon-hourglass:before {
 .icon-lamp.icon-left a:before,
 .icon-lamp.icon-right a:after,
 i.icon-lamp:before {
-  content: "💡";
+  content: "\1f4a1";
   height: inherit;
 }
 
@@ -959,7 +959,7 @@ i.icon-lamp:before {
 .icon-light-down.icon-left a:before,
 .icon-light-down.icon-right a:after,
 i.icon-light-down:before {
-  content: "🔅";
+  content: "\1f505";
   height: inherit;
 }
 
@@ -967,7 +967,7 @@ i.icon-light-down:before {
 .icon-light-up.icon-left a:before,
 .icon-light-up.icon-right a:after,
 i.icon-light-up:before {
-  content: "🔆";
+  content: "\1f506";
   height: inherit;
 }
 
@@ -983,7 +983,7 @@ i.icon-adjust:before {
 .icon-block.icon-left a:before,
 .icon-block.icon-right a:after,
 i.icon-block:before {
-  content: "🚫";
+  content: "\1f6ab";
   height: inherit;
 }
 
@@ -1311,7 +1311,7 @@ i.icon-cw:before {
 .icon-arrows-ccw.icon-left a:before,
 .icon-arrows-ccw.icon-right a:after,
 i.icon-arrows-ccw:before {
-  content: "🔄";
+  content: "\1f504";
   height: inherit;
 }
 
@@ -1335,7 +1335,7 @@ i.icon-level-up:before {
 .icon-shuffle.icon-left a:before,
 .icon-shuffle.icon-right a:after,
 i.icon-shuffle:before {
-  content: "🔀";
+  content: "\1f500";
   height: inherit;
 }
 
@@ -1343,7 +1343,7 @@ i.icon-shuffle:before {
 .icon-loop.icon-left a:before,
 .icon-loop.icon-right a:after,
 i.icon-loop:before {
-  content: "🔁";
+  content: "\1f501";
   height: inherit;
 }
 
@@ -1455,7 +1455,7 @@ i.icon-progress-3:before {
 .icon-target.icon-left a:before,
 .icon-target.icon-right a:after,
 i.icon-target:before {
-  content: "🎯";
+  content: "\1f3af";
   height: inherit;
 }
 
@@ -1463,7 +1463,7 @@ i.icon-target:before {
 .icon-palette.icon-left a:before,
 .icon-palette.icon-right a:after,
 i.icon-palette:before {
-  content: "🎨";
+  content: "\1f3a8";
   height: inherit;
 }
 
@@ -1487,7 +1487,7 @@ i.icon-list-add:before {
 .icon-signal.icon-left a:before,
 .icon-signal.icon-right a:after,
 i.icon-signal:before {
-  content: "📶";
+  content: "\1f4f6";
   height: inherit;
 }
 
@@ -1495,7 +1495,7 @@ i.icon-signal:before {
 .icon-trophy.icon-left a:before,
 .icon-trophy.icon-right a:after,
 i.icon-trophy:before {
-  content: "🏆";
+  content: "\1f3c6";
   height: inherit;
 }
 
@@ -1503,7 +1503,7 @@ i.icon-trophy:before {
 .icon-battery.icon-left a:before,
 .icon-battery.icon-right a:after,
 i.icon-battery:before {
-  content: "🔋";
+  content: "\1f50b";
   height: inherit;
 }
 
@@ -1519,7 +1519,7 @@ i.icon-back-in-time:before {
 .icon-monitor.icon-left a:before,
 .icon-monitor.icon-right a:after,
 i.icon-monitor:before {
-  content: "💻";
+  content: "\1f4bb";
   height: inherit;
 }
 
@@ -1527,7 +1527,7 @@ i.icon-monitor:before {
 .icon-mobile.icon-left a:before,
 .icon-mobile.icon-right a:after,
 i.icon-mobile:before {
-  content: "📱";
+  content: "\1f4f1";
   height: inherit;
 }
 
@@ -1543,7 +1543,7 @@ i.icon-network:before {
 .icon-cd.icon-left a:before,
 .icon-cd.icon-right a:after,
 i.icon-cd:before {
-  content: "💿";
+  content: "\1f4bf";
   height: inherit;
 }
 
@@ -1567,7 +1567,7 @@ i.icon-install:before {
 .icon-globe.icon-left a:before,
 .icon-globe.icon-right a:after,
 i.icon-globe:before {
-  content: "🌎";
+  content: "\1f30e";
   height: inherit;
 }
 
@@ -1623,7 +1623,7 @@ i.icon-paper-plane:before {
 .icon-leaf.icon-left a:before,
 .icon-leaf.icon-right a:after,
 i.icon-leaf:before {
-  content: "🍂";
+  content: "\1f342";
   height: inherit;
 }
 
@@ -1647,7 +1647,7 @@ i.icon-mouse:before {
 .icon-briefcase.icon-left a:before,
 .icon-briefcase.icon-right a:after,
 i.icon-briefcase:before {
-  content: "💼";
+  content: "\1f4bc";
   height: inherit;
 }
 
@@ -1727,7 +1727,7 @@ i.icon-chart-pie:before {
 .icon-chart-line.icon-left a:before,
 .icon-chart-line.icon-right a:after,
 i.icon-chart-line:before {
-  content: "📈";
+  content: "\1f4c8";
   height: inherit;
 }
 
@@ -1735,7 +1735,7 @@ i.icon-chart-line:before {
 .icon-chart-bar.icon-left a:before,
 .icon-chart-bar.icon-right a:after,
 i.icon-chart-bar:before {
-  content: "📊";
+  content: "\1f4ca";
   height: inherit;
 }
 
@@ -1743,7 +1743,7 @@ i.icon-chart-bar:before {
 .icon-chart-area.icon-left a:before,
 .icon-chart-area.icon-right a:after,
 i.icon-chart-area:before {
-  content: "🔾";
+  content: "\1f53e";
   height: inherit;
 }
 
@@ -1759,7 +1759,7 @@ i.icon-tape:before {
 .icon-graduation-cap.icon-left a:before,
 .icon-graduation-cap.icon-right a:after,
 i.icon-graduation-cap:before {
-  content: "🎓";
+  content: "\1f393";
   height: inherit;
 }
 
@@ -1775,7 +1775,7 @@ i.icon-language:before {
 .icon-ticket.icon-left a:before,
 .icon-ticket.icon-right a:after,
 i.icon-ticket:before {
-  content: "🎫";
+  content: "\1f3ab";
   height: inherit;
 }
 
@@ -1783,7 +1783,7 @@ i.icon-ticket:before {
 .icon-water.icon-left a:before,
 .icon-water.icon-right a:after,
 i.icon-water:before {
-  content: "💦";
+  content: "\1f4a6";
   height: inherit;
 }
 
@@ -1791,7 +1791,7 @@ i.icon-water:before {
 .icon-droplet.icon-left a:before,
 .icon-droplet.icon-right a:after,
 i.icon-droplet:before {
-  content: "💧";
+  content: "\1f4a7";
   height: inherit;
 }
 
@@ -1807,7 +1807,7 @@ i.icon-air:before {
 .icon-credit-card.icon-left a:before,
 .icon-credit-card.icon-right a:after,
 i.icon-credit-card:before {
-  content: "💳";
+  content: "\1f4b3";
   height: inherit;
 }
 
@@ -1815,7 +1815,7 @@ i.icon-credit-card:before {
 .icon-floppy.icon-left a:before,
 .icon-floppy.icon-right a:after,
 i.icon-floppy:before {
-  content: "💾";
+  content: "\1f4be";
   height: inherit;
 }
 
@@ -1823,7 +1823,7 @@ i.icon-floppy:before {
 .icon-clipboard.icon-left a:before,
 .icon-clipboard.icon-right a:after,
 i.icon-clipboard:before {
-  content: "📋";
+  content: "\1f4cb";
   height: inherit;
 }
 
@@ -1831,7 +1831,7 @@ i.icon-clipboard:before {
 .icon-megaphone.icon-left a:before,
 .icon-megaphone.icon-right a:after,
 i.icon-megaphone:before {
-  content: "📣";
+  content: "\1f4e3";
   height: inherit;
 }
 
@@ -1871,7 +1871,7 @@ i.icon-thermometer:before {
 .icon-key.icon-left a:before,
 .icon-key.icon-right a:after,
 i.icon-key:before {
-  content: "🔑";
+  content: "\1f511";
   height: inherit;
 }
 
@@ -1919,7 +1919,7 @@ i.icon-flow-parallel:before {
 .icon-rocket.icon-left a:before,
 .icon-rocket.icon-right a:after,
 i.icon-rocket:before {
-  content: "🚀";
+  content: "\1f680";
   height: inherit;
 }
 
@@ -7530,7 +7530,61 @@ form label.tag {
   width: 30%;
 }
 
+/* line 103, ../sass/style.scss */
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+}
+
 /* line 107, ../sass/style.scss */
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+/* line 119, ../sass/style.scss */
+.fileinput-button i {
+  color: #ffffff;
+}
+
+/* line 123, ../sass/style.scss */
+.fileinput-button span {
+  padding-left: 0px;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* line 131, ../sass/style.scss */
+.label.filename {
+  position: relative;
+  overflow: hidden;
+  height: 36px;
+  line-height: 36px;
+}
+
+/* line 138, ../sass/style.scss */
+.spacer {
+  margin: 10px;
+}
+
+/* Fixes for IE < 8 */
+@media screen\9 {
+  /* line 144, ../sass/style.scss */
+  .fileinput-button input {
+    filter: alpha(opacity=0);
+    font-size: 100%;
+    height: 100%;
+  }
+}
+/* line 151, ../sass/style.scss */
 #play-info {
   margin: 16px;
 }
