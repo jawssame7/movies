@@ -29,6 +29,12 @@ class MovieController extends AppController {
     ];
 
     /**
+     * cast、tagの検索結果フラグ
+     * @var bool
+     */
+    private $_searchICastMovieIdsEmpty = false;
+
+    /**
      *
      */
     public function beforeFilter() {
@@ -42,13 +48,23 @@ class MovieController extends AppController {
      */
     public function index() {
 
+        $movies = [];
+
         $params = $this->_mergedCondition();
 
         $conditions = $this->_createConditions($params);
 
-        $this->Paginator->settings['conditions'] = $conditions;
+        if (count($params) == 0) {
 
-        $movies = $this->Paginator->paginate('Movie');
+            $this->Paginator->settings['conditions'] = $conditions;
+            $movies = $this->Paginator->paginate('Movie');
+
+        } else if (count($params) > 0 && !$this->_searchICastMovieIdsEmpty) {
+
+            $this->Paginator->settings['conditions'] = $conditions;
+
+            $movies = $this->Paginator->paginate('Movie');
+        }
 
         // データ整形
         foreach($movies as &$movie) {
@@ -482,6 +498,8 @@ class MovieController extends AppController {
                 $conditions[] = [
                     'Movie.id' => $movieIds
                 ];
+            } else {
+
             }
         }
 
@@ -791,6 +809,13 @@ class MovieController extends AppController {
         return $result;
     }
 
+    /**
+     * Cast、Tagで検索したIDをマージ
+     * @param array $casts
+     * @param array $tags
+     *
+     * @return array
+     */
     private function _mergedSearchMovieIds($casts = [], $tags = []) {
 
         $large = count($casts) > count($tags) ? $casts : $tags;
@@ -798,13 +823,30 @@ class MovieController extends AppController {
         $merged = [];
 
 
-        foreach($large as $l) {
-            foreach($small as $s) {
-                if($s == $l) {
-                    $merged[] = $s;
+        if (count($large) > 0 && count($small) > 0) {
+            foreach($large as $l) {
+                foreach($small as $s) {
+                    if($s == $l) {
+                        $merged[] = $s;
+                    }
                 }
             }
+            if (count($merged) > 0) {
+                $this->_searchICastMovieIdsEmpty = false;
+            } else {
+                $this->_searchICastMovieIdsEmpty = true;
+            }
+        } else if (count($large) > 0 && count($small) == 0) {
+            $merged = $large;
+            $this->_searchICastMovieIdsEmpty = false;
+        } else if (count($large) == 0 && count($small) > 0) {
+            $merged = $large;
+            $this->_searchICastMovieIdsEmpty = false;
+        } else {
+            $merged = $large;
+            $this->_searchICastMovieIdsEmpty = true;
         }
+
         return $merged;
 
     }

@@ -71,15 +71,17 @@
     </div>
     <div class="row">
         <div class="twelve columns">
-            <?php
-            echo $this->Paginator->prev(LABEL_PREV . __(''), ['tag' => 'div', 'class' => 'medium btn pill-left default'], null, ['tag' => 'div', 'class' => 'medium btn pill-left default disabled']);
-            ?>
-            <?php
-            echo $this->Paginator->numbers(['tag' => 'div', 'separator' => false, 'class' => 'medium default btn', 'currentClass' => 'disabled', 'currentTag' => '']);
-            ?>
-            <?php
-            echo $this->Paginator->next(LABEL_NEXT . __(''), ['tag' => 'div', 'class' => 'medium btn pill-right default'], null, ['tag' => 'div', 'class' => 'medium btn pill-right default disabled']);
-            ?>
+            <?php if (count($movies) > 0) : ?>
+                <?php
+                echo $this->Paginator->prev(LABEL_PREV . __(''), ['tag' => 'div', 'class' => 'medium btn pill-left default'], null, ['tag' => 'div', 'class' => 'medium btn pill-left default disabled']);
+                ?>
+                <?php
+                echo $this->Paginator->numbers(['tag' => 'div', 'separator' => false, 'class' => 'medium default btn', 'currentClass' => 'disabled', 'currentTag' => '']);
+                ?>
+                <?php
+                echo $this->Paginator->next(LABEL_NEXT . __(''), ['tag' => 'div', 'class' => 'medium btn pill-right default'], null, ['tag' => 'div', 'class' => 'medium btn pill-right default disabled']);
+                ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>
