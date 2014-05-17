@@ -2,12 +2,18 @@
     $idx = 0;
     $count = 0;
 ?>
+<?php
+$this->Paginator->options(array(
+    'url' => $this->request->query,
+    'convertKeys' => array_keys($this->request->query)
+));
+?>
 <div class="row">
     <h3 class="lead"><?php echo LABEL_MOVIE . LABEL_LIST ?></h3>
     <?php // echo debug($this->request->data); ?>
     <div class="row">
         <div class="twelve columns">
-            <?php echo $this->Form->create(); ?>
+            <?php echo $this->Form->create(['type' => 'get']); ?>
                 <fieldset>
                     <legend><?php echo LABEL_SEARCH . LABEL_FORM ?></legend>
                     <ul>

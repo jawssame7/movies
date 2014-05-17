@@ -1,6 +1,9 @@
 var base = $.extend({}, {
 
-
+    /**
+     * 初期処理 各小クラスで呼び出し
+     * @private
+     */
     _init: function () {
 
         var me = this;
@@ -9,6 +12,9 @@ var base = $.extend({}, {
 
     },
 
+    /**
+     * 共通のイベント設定
+     */
     setCommonEvents: function() {
 
         var me = this;
@@ -16,6 +22,14 @@ var base = $.extend({}, {
         $('#search').bind('click', function () {
             $('form').submit();
             return false;
+        });
+
+        // enterで検索
+        $(document).bind('keydown', function (e) {
+            var keyCode = e.keyCode;
+            if (keyCode == 13) {
+                $('#search').trigger('click');
+            }
         });
 
         $('.switch').bind('click', function() {

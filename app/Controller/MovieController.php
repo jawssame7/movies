@@ -48,23 +48,18 @@ class MovieController extends AppController {
      */
     public function index() {
 
-        $movies = [];
+        // 常に前回検索した値がフォームに残るように、dataに値を設定します
+        $this->request->data['Movie'] = $this->request->query;
 
-        $params = $this->_mergedCondition();
+        $conditions = $this->_createConditions($this->request->data);
 
-        $conditions = $this->_createConditions($params);
-
-        if (count($params) == 0) {
-
-            $this->Paginator->settings['conditions'] = $conditions;
-            $movies = $this->Paginator->paginate('Movie');
-
-        } else if (count($params) > 0 && !$this->_searchICastMovieIdsEmpty) {
+        if (count($conditions) > 0) {
 
             $this->Paginator->settings['conditions'] = $conditions;
 
-            $movies = $this->Paginator->paginate('Movie');
         }
+
+        $movies = $this->Paginator->paginate('Movie');
 
         // データ整形
         foreach($movies as &$movie) {
@@ -159,7 +154,6 @@ class MovieController extends AppController {
 
                         if (!$savedMovie) {
                             $dataSource->rollback();
-                            //$this->Session->setFlash(LABEL_MOVIE . LABEL_TABLE . CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
                             $errorMsg = LABEL_MOVIE . LABEL_TABLE . CONFIRM_MESSAGE_ADD_FAILURE;
                             $this->Movie->invalidate('other', $errorMsg);
                             $errors = $this->Movie->validationErrors;
@@ -179,7 +173,6 @@ class MovieController extends AppController {
                         $savedCast = $this->_castSave($data['Movie']['cast']);
                         if (!$savedCast) {
                             $dataSource->rollback();
-                            //$this->Session->setFlash(LABEL_CAST . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
                             $errorMsg = LABEL_CAST . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE;
                             $this->Movie->invalidate('other', $errorMsg);
                             $errors = $this->Movie->validationErrors;
@@ -197,7 +190,6 @@ class MovieController extends AppController {
                         $savedTag = $this->_tagSave($data['Movie']['tag']);
                         if (!$savedTag) {
                             $dataSource->rollback();
-                            //$this->Session->setFlash(LABEL_TAG . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
                             $errorMsg = LABEL_TAG . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE;
                             $this->Movie->invalidate('other', $errorMsg);
                             $errors = $this->Movie->validationErrors;
@@ -215,7 +207,6 @@ class MovieController extends AppController {
                         $savedMoviesCast = $this->_moviesCastSave($savedMovie, $savedCast);
                         if (!$savedMoviesCast) {
                             $dataSource->rollback();
-                            //$this->Session->setFlash(LABEL_MOVIE . LABEL_CAST . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
                             $errorMsg = LABEL_MOVIE . LABEL_CAST . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE;
                             $this->Movie->invalidate('other', $errorMsg);
                             $errors = $this->Movie->validationErrors;
@@ -233,7 +224,6 @@ class MovieController extends AppController {
                         $savedMoviesTag = $this->_moviesTagSave($savedMovie, $savedTag);
                         if (!$savedMoviesTag) {
                             $dataSource->rollback();
-                            //$this->Session->setFlash(LABEL_MOVIE . LABEL_TAG . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE, 'default',  ['class' => 'danger alert']);
                             $errorMsg = LABEL_MOVIE . LABEL_TAG . LABEL_TABLE. CONFIRM_MESSAGE_ADD_FAILURE;
                             $this->Movie->invalidate('other', $errorMsg);
                             $errors = $this->Movie->validationErrors;
@@ -248,8 +238,7 @@ class MovieController extends AppController {
                         }
 
                         $dataSource->commit();
-//                        $this->Session->setFlash(CONFIRM_MESSAGE_ADD_SUCCESS, 'flash_success', ['page_title' => LABEL_SUCCESS]);
-//                        $this->redirect('index');
+
                         $this->Session->setFlash(CONFIRM_MESSAGE_ADD_SUCCESS, 'flash_success', ['page_title' => LABEL_SUCCESS]);
                         $result = [
                             'success' => true
@@ -260,7 +249,6 @@ class MovieController extends AppController {
 
 
                     } else {
-                        //$this->Session->setFlash(CONFIRM_MESSAGE_FILE_ERROR, 'default',  ['class' => 'danger alert']);
                         $errorMsg = CONFIRM_MESSAGE_FILE_ERROR;
                         $this->Movie->invalidate('file', $errorMsg);
                         $errors = $this->Movie->validationErrors;
@@ -277,7 +265,6 @@ class MovieController extends AppController {
 
                 } else {
                     // 入力チェック
-                    //$this->Session->setFlash(CONFIRM_ERROR_MESSAGE, 'default',  ['class' => 'danger alert']);
                     $errors = $this->Movie->validationErrors;
                     $result = [
                         'success' => false,
@@ -287,8 +274,6 @@ class MovieController extends AppController {
                 }
 
             } else {
-
-                //$this->Session->setFlash(CONFIRM_MESSAGE_NOT_SEND_DATA, 'default',  ['class' => 'danger alert']);
 
                 $result = [
                     'success' => false,
@@ -441,21 +426,6 @@ class MovieController extends AppController {
     }
 
     /**
-     * 検索条件をマージ
-     * @return array
-     */
-    private function _mergedCondition() {
-
-        $params = array_merge($this->passedArgs, $this->request->data);
-        if (isset($this->request->data['Movie'])) {
-            $this->request->query['page'] = 1;
-        }
-
-        $this->request->data = $params;
-        return $params;
-    }
-
-    /**
      * 検索条件を作成して返します。
      * @param $data
      * @return array
@@ -463,8 +433,9 @@ class MovieController extends AppController {
     private function _createConditions($data) {
 
         $conditions = [];
-        $actMovieIds = [];
-        $tagMovieIds = [];
+        $castsTagsCond = [];
+        $castNamesParam = [];
+        $tagNamesParam = [];
         $movieIds = [];
 
         $conditions[] = [
@@ -482,111 +453,42 @@ class MovieController extends AppController {
             }
 
             if (isset($movie['cast']) && $movie['cast'] != '') {
-
-                $actMovieIds = $this->_createCastConditions($movie['cast']);
+                // 一度、タグをカンマ区切り分 like検索
+                $casts = $this->_splitData($movie['cast']);
+                $castsTagsCond['cast_name'] = '%'. $movie['cast'] . '%';
+                foreach($casts as $cast) {
+                    $castNamesParam[] = '%'.$cast.'%';
+                    $castsTagsCond['cast_name'] = $castNamesParam;
+                }
 
             }
 
             if (isset($movie['tag']) && $movie['tag'] != '') {
-
-                $tagMovieIds = $this->_createTagConditions($movie['tag']);
+                // 一度、タグをカンマ区切り分 like検索
+                $tags = $this->_splitData($movie['tag']);
+                $castsTagsCond['tag_name'] = '%'. $movie['tag'] . '%';
+                foreach($tags as $tag) {
+                    $tagNamesParam[] = '%'.$tag.'%';
+                    $castsTagsCond['tag_name'] = $tagNamesParam;
+                }
             }
 
-            $movieIds = $this->_mergedSearchMovieIds($actMovieIds, $tagMovieIds);
+            if (isset($castsTagsCond['cast_name']) || isset($castsTagsCond['tag_name'])) {
 
-            if (count($movieIds) > 0) {
-                $conditions[] = [
-                    'Movie.id' => $movieIds
-                ];
-            } else {
+                $movieIds = $this->Movie->castsTagsSearch($castsTagsCond);
 
+                if (count($movieIds) > 0) {
+                    $conditions[] = [
+                        'Movie.id' => $movieIds
+                    ];
+                }
             }
+
         }
 
         return $conditions;
     }
 
-    /**
-     * 出演者の検索条件を作成して返します。
-     * @param $param
-     * @return array
-     */
-    private function _createCastConditions($param) {
-
-        $result = [];
-        $castConditions = [];
-        $castIds = [];
-
-        // 一度、タグをカンマ区切り分 like検索
-        $casts = $this->_splitData($param);
-
-        foreach($casts as $cast) {
-            $castConditions['or'][] = [
-                'Cast.name LIKE' => '%'.$cast.'%'
-            ];
-        }
-        $castSearch = $this->Cast->find('all',[
-            'conditions' => $castConditions
-        ]);
-
-        // 検索でmovies_tagを検索
-        foreach($castSearch as $cast) {
-            $castIds[] = $cast['Cast']['id'];
-        }
-        $moviesCastSearch = $this->MoviesCast->find('all', [
-            'conditions' => [
-                'MoviesCast.cast_id' => $castIds
-            ]
-        ]);
-
-        // movies_castsの結果のmovie_idをinで検索
-        foreach($moviesCastSearch as $moviesCast) {
-            $result[] = $moviesCast['MoviesCast']['movie_id'];
-        }
-
-        return $result;
-    }
-
-    /**
-     * タグの検索条件を作成して返します。
-     * @param $param
-     * @return array
-     */
-    private function _createTagConditions($param) {
-
-        $result = [];
-        $tagsConditions = [];
-        $tagIds = [];
-
-        // 一度、タグをカンマ区切り分 like検索
-        $tags = $this->_splitData($param);
-
-        foreach($tags as $tag) {
-            $tagsConditions['or'][] = [
-                'Tag.name LIKE' => '%'.$tag.'%'
-            ];
-        }
-        $tagSearch = $this->Tag->find('all',[
-            'conditions' => $tagsConditions
-        ]);
-
-        // 検索でmovies_tagを検索
-        foreach($tagSearch as $tag) {
-            $tagIds[] = $tag['Tag']['id'];
-        }
-        $moviesTagSearch = $this->MoviesTag->find('all', [
-            'conditions' => [
-                'MoviesTag.tag_id' => $tagIds
-            ]
-        ]);
-
-        // movies_tagの結果のmovie_idをinで検索
-        foreach($moviesTagSearch as $moviesTag) {
-            $result[] = $moviesTag['MoviesTag']['movie_id'];
-        }
-
-        return $result;
-    }
 
     /**
      * 出演者の一覧Jsonデータを作成して返します。
@@ -807,48 +709,6 @@ class MovieController extends AppController {
         }
 
         return $result;
-    }
-
-    /**
-     * Cast、Tagで検索したIDをマージ
-     * @param array $casts
-     * @param array $tags
-     *
-     * @return array
-     */
-    private function _mergedSearchMovieIds($casts = [], $tags = []) {
-
-        $large = count($casts) > count($tags) ? $casts : $tags;
-        $small = count($casts) <= count($tags) ? $casts : $tags;
-        $merged = [];
-
-
-        if (count($large) > 0 && count($small) > 0) {
-            foreach($large as $l) {
-                foreach($small as $s) {
-                    if($s == $l) {
-                        $merged[] = $s;
-                    }
-                }
-            }
-            if (count($merged) > 0) {
-                $this->_searchICastMovieIdsEmpty = false;
-            } else {
-                $this->_searchICastMovieIdsEmpty = true;
-            }
-        } else if (count($large) > 0 && count($small) == 0) {
-            $merged = $large;
-            $this->_searchICastMovieIdsEmpty = false;
-        } else if (count($large) == 0 && count($small) > 0) {
-            $merged = $large;
-            $this->_searchICastMovieIdsEmpty = false;
-        } else {
-            $merged = $large;
-            $this->_searchICastMovieIdsEmpty = true;
-        }
-
-        return $merged;
-
     }
 
     /**
