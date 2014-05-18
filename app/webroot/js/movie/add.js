@@ -142,15 +142,15 @@ var front = $.extend(base, {
 
     _getFileNameWithoutExt: function(file) {
         var me = this,
-            spritData, result = '';
+            fileName;
 
         if (file) {
-            spritData = file.name.split('.');
-            if (spritData[0]) {
-                result = spritData[0];
+            fileName = file.name;
+            if(fileName) {
+                fileName = fileName.substr(0, fileName.lastIndexOf('.'));
             }
         }
-        return result;
+        return fileName;
     }
 
 });
